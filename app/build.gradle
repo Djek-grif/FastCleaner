@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.djekgrif.fastcleaner"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        textOutput "stdout"
+        textReport true
+        checkAllWarnings true
+        warningsAsErrors true
+        showAll true
+        explainIssues true
+        abortOnError false
+        lintConfig file("$projectDir/lint.xml")
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/license/LICENSE.base64.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+}
+
+//Ensure Kotlin will not be used in production code.
+afterEvaluate {
+    android.sourceSets.all { sourceSet ->
+        if (!sourceSet.name.startsWith('test') || !sourceSet.name.startsWith('androidTest')) {
+            sourceSet.kotlin.setSrcDirs([])
+        }
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
+
+    // UI
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY"
+    compile "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT"
+    compile "com.android.support:design:$SUPPORT_LIBRARY"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+
+    //Dagger
+    compile "com.google.dagger:dagger:$DAGGER_VERSIONS"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSIONS"
+    kaptTest "com.google.dagger:dagger-compiler:$DAGGER_VERSIONS"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$DAGGER_VERSIONS"
+
+    // RxKotlin
+    compile "io.reactivex.rxjava2:rxandroid:$RX_VERSION"
+
+
+    // Testing
+    testCompile "junit:junit:$JUNIT"
+    testCompile "org.robolectric:robolectric:3.2.1"
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$KOTLIN_VERSION"
+    testCompile "com.nhaarman:mockito-kotlin:1.1.0"
+    testCompile 'org.amshove.kluent:kluent:1.14'
+
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$ESPRESSO"
+    androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY"
+}
+kapt {
+    generateStubs = true
+}
+repositories {
+    mavenCentral()
+}

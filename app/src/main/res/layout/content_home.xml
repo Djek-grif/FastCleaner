@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.djekgrif.fastcleaner.ui.home.HomeActivity"
+    tools:showIn="@layout/fragment_home">
+
+    <com.djekgrif.fastcleaner.ui.widgets.CustomProgress
+        android:id="@+id/storage_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cp_bottom_text="@string/storage"
+        app:cp_bottom_text_size="@dimen/default_text_larger"
+        app:cp_progress="0"
+        app:cp_stroke_width="@dimen/progress_storage_width"
+        app:cp_text_color="@color/colorForeground"
+        app:cp_text_size="@dimen/default_text_big"
+        app:layout_constraintBottom_toTopOf="@+id/home_horizontal_divider"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_start_storage_control"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_end_storage_control"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <com.djekgrif.fastcleaner.ui.widgets.CustomProgress
+        android:id="@+id/ram_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_normal"
+        android:layout_marginBottom="@dimen/default_micro"
+        app:cp_bottom_text="@string/ram"
+        app:cp_bottom_text_size="@dimen/default_text_normal"
+        app:cp_progress="0"
+        app:cp_stroke_width="@dimen/progress_ram_width"
+        app:cp_text_color="@color/colorForeground"
+        app:cp_text_size="@dimen/default_text_larger"
+        app:layout_constraintBottom_toBottomOf="@+id/storage_progress"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_end_storage_control"
+        app:layout_constraintRight_toRightOf="@+id/guideline_end_ram_control"/>
+
+    <View
+        android:id="@+id/home_horizontal_divider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/colorElementDivider"
+        app:layout_constraintBottom_toTopOf="@+id/speed_up_btn" />
+
+    <View
+        android:id="@+id/home_vertical_divider"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="@color/colorElementDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_horizontal_divider" />
+
+    <LinearLayout
+        android:id="@+id/speed_up_btn"
+        style="@style/Widget.Button.Parts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/home_horizontal_divider_middle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/home_vertical_divider">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_speed_up" />
+
+        <TextView
+            style="@style/Widget.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/speed_up" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clean_btn"
+        style="@style/Widget.Button.Parts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/home_horizontal_divider_middle"
+        app:layout_constraintLeft_toRightOf="@+id/home_vertical_divider"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_clean" />
+
+        <TextView
+            style="@style/Widget.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/clean" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/home_horizontal_divider_middle"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/colorElementDivider"
+        app:layout_constraintBottom_toTopOf="@+id/apps_btn" />
+
+    <LinearLayout
+        android:id="@+id/apps_btn"
+        style="@style/Widget.Button.Parts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/home_vertical_divider"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_apps" />
+
+        <TextView
+            style="@style/Widget.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/applications" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/boot_btn"
+        style="@style/Widget.Button.Parts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/home_vertical_divider">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_boot" />
+
+        <TextView
+            style="@style/Widget.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/boot" />
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_start_storage_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_end_storage_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_end_ram_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+</android.support.constraint.ConstraintLayout>

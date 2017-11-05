@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomProgress">
+        <attr name="cp_progress" format="integer" />
+        <attr name="cp_angle" format="float" />
+        <attr name="cp_stroke_width" format="dimension" />
+        <attr name="cp_max" format="integer" />
+        <attr name="cp_unfinished_color" format="color" />
+        <attr name="cp_finished_color" format="color" />
+        <attr name="cp_text_size" format="dimension" />
+        <attr name="cp_text_color" format="color" />
+        <attr name="cp_suffix_text" format="string" />
+        <attr name="cp_suffix_text_size" format="dimension" />
+        <attr name="cp_suffix_text_padding" format="dimension" />
+        <attr name="cp_bottom_text" format="string" />
+        <attr name="cp_bottom_text_size" format="dimension" />
+    </declare-styleable>
+</resources>
